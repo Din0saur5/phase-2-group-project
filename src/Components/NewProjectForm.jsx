@@ -113,7 +113,7 @@ function NewProjectForm({ setShowForm }) {
   return (
     <>
       <div>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} id="newProjectForm">
           <label>Project Name</label>
           <input
             id="name"
@@ -133,7 +133,7 @@ function NewProjectForm({ setShowForm }) {
           ></input>
           <button onClick={handleNewCont}>add</button>
           <br />
-          <div>{displayCreators}</div>
+          <div className = "creatorContainer">{displayCreators}</div>
           <br />
           <label>Description</label>
           <textarea

@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 
+
 function NavBar({ user }) {
   if (user)
     return (

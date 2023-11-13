@@ -12,40 +12,56 @@ function Projects() {
   const [selection, setSelection] = useState("All");
   const [showForm, setShowForm] = useState(false);
   const [right,setRight] = useState(0)
+  const[left,setLeft]=useState(0)
+  const[move,setMove]=useState("")
+  const [isRightClicked, setRightClicked] = useState(false);
+
+  let xPos = 100
   
- // fk this sht is annoying and vague
- var elem = document.querySelector('.main-carousel');
-var flkty = new Flickity( elem, {
-  // options
-  cellAlign: 'left',
-  contain: true
-});
+  const handleRightClick = () => {
+     xPos += 100;
+    setRightClicked(true);
+    console.log(xPos)
 
+  };
+  const divStyle = {
+    transform: isRightClicked ? `translate(${xPos}px, 0px)` : 'none',
+  };
 
+  
+  
   // control the right and left click states
 // let rightOne = right
-
-  function clickRight(e){
-  //   if(right<3){
-  //   rightOne++
-  //   setRight(rightOne)
-  //   console.log(right)
-  // }
+//   function clickRight(e){
+//     if(right<projects.length){
+//       rightOne++
+//       setRight(rightOne)
+//     }
+//     if(right<projects.length && right>0){
+//       setMove("rightClicked")
+      
+//     }
+    
+//     console.log(right)
+//     console.log(`move:${move}`)
+//   }
   
-  }
-  function clickLeft(e){
-    // if(right>0){
-    //   rightOne--
-    //   setRight(rightOne)
-    //   console.log(right)
-    // }
-  }
+  
+//   function clickLeft(e){
+//     if(right>0){
+//       rightOne--
+//       setRight(rightOne)
+//     }
+//     console.log(right)
+//   }
+// translating the class to move the inner div
+
 
   
 
   // fetch the data here
-  const { user, projects, skills,creators } = useOutletContext();
-  console.log(creators);
+  const { user, projects, skills } = useOutletContext();
+  console.log(projects);
   if (!projects.length) {
     return <img src="../src/assets/img/stefan-bonk.gif" />;
   }
@@ -77,29 +93,10 @@ var flkty = new Flickity( elem, {
       />
     );
   });
-  
+
   return (
     <>
       <div>
-        {/* flick test */}
-        <div>
-        {/* <!-- Flickity HTML init --> */}
-        <p><code>wrapAround: true</code></p>
-        <div class="main-carousel" >
-  <div class="carousel-cell">{project[0]}</div>
-  <div class="carousel-cell">{project}</div>
-  <div class="carousel-cell">{project}</div>
-  <div class="carousel-cell">{project}</div>
-  <div class="carousel-cell">{project}</div>
-  <div class="carousel-cell">{project}</div>
-  <div class="carousel-cell">{project}</div>
-  <div class="carousel-cell">{project}</div>
-</div>
-
-        </div>
-        {/* flick test */}
-
-
         <h1>List of projects</h1>
         {!showForm && user ? (
           <button id="rightButton" onClick={() => setShowForm(true)}>Add your own</button>
@@ -110,10 +107,14 @@ var flkty = new Flickity( elem, {
         <Search inputHandler={inputHandler} input={input} />
         <ProjectFilter />
         <br/>
-        
-        {/* // pplz do not say eertying is broken again  */}
+        <button onClick={e => {clickLeft(e);}}>left</button>
+        <div id="scrollerDiv">
+          <div id="projectContainer" className={isRightClicked ? 'rightClicked' : ''} style={divStyle} onContextMenu={handleRightClick}>
+            {project}
+          </div>
+        </div>
         <br/>
-      
+      <button onClick={e => {handleRightClick(e)}}>right</button>
       <br/>
       </div>
       

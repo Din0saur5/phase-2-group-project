@@ -81,6 +81,8 @@ a:hover {
   opacity: 90%;
   min-width: 398px;
   min-height: 380px;
+  align-items: baseline;
+    justify-items: start;
 }
 
 @keyframes jump {
@@ -239,23 +241,21 @@ form {
   margin: 5px;
 }
 
-
-/* fucking around with the flick man */
-/* cell number */
-.carousel-cell {
-  width: 72%;
-  height: 200px;
-  margin-right: 20px;
-  background: #8C8;
-  counter-increment: gallery-cell;
-  display: flex;
-    flex-direction: row;
+/* new project form styleing */
+#newProjectForm{
+  background-color: #646cff;
+  max-width: 600px;
+  transform: translate3d(503px, -14px, 0px);
 }
-.carousel-cell:before {
-  display: block;
-  content: counter(gallery-cell);
-  color: white;
-  display: flex;
-    flex-direction: row;
+.creatorContainer{
+ background-color: #3e48f5;
 }
 
+.cardImg{
+  max-height: 300px;
+  max-width: 345px;
+}
+#scrollerDiv{
+  max-width: 1200px;
+  overflow: hidden;
+}
